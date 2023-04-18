@@ -1,20 +1,29 @@
-terraform {
+# Local .terraform directories
+**/.terraform/*
 
-}
+# Terraform lockfile
+.terraform.lock.hcl
 
-provider "aws" {
-  region = "us-east-1"
-}
+# .tfstate files
+*.tfstate
+*.tfstate.*
 
-module "apache" {
-  source = ".//terraform-aws-apache-example"
-  vpc_id          = "vpc-05e2de09dbbac5f7b"
-  my_ip_with_cidr = "102.89.22.124/32"
-  public_key      = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC6/y3RU73Qe6JIOHyNzauJVfOn1MUjOEHxe0nvLvLRqW0EVcAZUB+JtJ8zqNODam2pI+HMgQd3W0vb41ZBfIQqHalfI5Y76sgNWatQGevJqogU56Dp7yIvtlE1Qtv5cDGT1kDderNfJFy152KfWJw81dB3n62OHwuBmxP9OWU05SlU0ZxBb7o/Qd7pwd4gixdnFrvnskvHBaLBkC609AleMg/IvEKB4ooujlQf5FlIDHC0DVe7CTV/IN4FIjnFn0uZCXkzDsTkUteFJM0U7LCG+lllYjVc2aRWwuLalu+NPe3LF29xtEeFxq0FXbAKnnmLNiq9FzJk9pg26jgYj4zUNbuhDHWpqZPwDmhjh+z5in+PS0bBDUUsbSRwN0jx6VK4s6MH1eMIvW4imNL5mYvLXMOlZyDTuaVuRYZzb5IUETrMcCi3uhqxp1PkcsCSOZkgO/0+rm0lqaWZwt9jsIvwqNv2IKsfqBUXUnMSvovZ90kc6szLLSTYwFJIQJH/tvU= USER@DESKTOP-DAE9MEL"
-  instance_type   = "t2.micro"
-  server_name     = "Apache Server Example"
-}
+# Crash log files
+crash.log
 
-output "public_ip" {
-  value = module.apache.public_ip
-}
+# Exclude all .tfvars files, which are likely to contain sentitive data, such as
+# password, private keys, and other secrets. These should not be part of version
+# control as they are data points which are potentially sensitive and subject
+# to change depending on the environment.
+*.tfvars
+
+# Ignore override files as they are usually used to override resources locally and so
+# are not checked in
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Ignore CLI configuration files
+.terraformrc
+terraform.rc
